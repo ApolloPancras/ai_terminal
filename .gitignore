@@ -1,0 +1,13 @@
+src/zsh_integration/__pycache__/install.cpython-313.pyc
+scripts/__pycache__/install.cpython-313.pyc
+src/core/__pycache__/context_manager.cpython-313.pyc
+src/handlers/__pycache__/__init__.cpython-313.pyc
+src/handlers/__pycache__/base_handler.cpython-313.pyc
+src/handlers/__pycache__/command_handler.cpython-313.pyc
+src/handlers/__pycache__/conversation_handler.cpython-313.pyc
+src/handlers/__pycache__/document_handler.cpython-313.pyc
+src/utils/__pycache__/__init__.cpython-313.pyc
+src/utils/__pycache__/config_loader.cpython-313.pyc
+src/utils/__pycache__/config_manager.cpython-313.pyc
+src/utils/__pycache__/mode_detector.cpython-313.pyc
+src/zsh_integration/__pycache__/__init__.cpython-313.pyc
