@@ -1,0 +1,154 @@
+# AI Terminal 配置文件示例
+# 请复制此文件为 config.yaml 并根据需要修改
+
+# API 配置
+api:
+  # API 提供商 (目前支持 mistral)
+  provider: "mistral"
+  # 使用的模型
+  model: "mistral-small-latest"
+  # API 密钥，建议通过环境变量 MISTRAL_API_KEY 设置
+  api_key: "${MISTRAL_API_KEY}"
+
+# Mistral 模型参数
+mistral:
+  # 控制生成文本的随机性 (0.0 - 1.0)
+  temperature: 0.7
+  # 生成的最大 token 数量
+  max_tokens: 4096
+  # 核心采样的概率阈值 (0.0 - 1.0)
+  top_p: 0.9
+  # 是否流式输出
+  stream: True
+
+# 终端设置
+terminal:
+  # 命令前缀
+  command_prefix: "ai"
+  # 最大历史记录条数
+  max_history: 20
+  # 命令执行超时时间(秒)
+  command_timeout: 30
+
+# 用户界面设置
+ui:
+  # 是否启用命令建议
+  enable_suggestions: true
+  # 是否启用语法高亮
+  enable_highlighting: true
+  # 最大建议数量
+  max_suggestions: 3
+  # 输出颜色主题 (light/dark/auto)
+  theme: "auto"
+
+# 日志设置
+logging:
+  # 日志级别 (DEBUG/INFO/WARNING/ERROR/CRITICAL)
+  level: "INFO"
+  # 日志文件路径，留空则输出到控制台
+  file: "~/.ai_terminal/ai_terminal.log"
+  # 最大日志文件大小(MB)
+  max_size: 10
+  # 保留的日志文件数量
+  backup_count: 3
+
+# 缓存设置
+cache:
+  # 是否启用缓存
+  enabled: true
+  # 缓存目录
+  directory: "~/.ai_terminal/cache"
+  # 缓存过期时间(秒)
+  ttl: 86400  # 24小时
+
+# 代理设置
+proxy:
+  # HTTP 代理
+  http: ""
+  # HTTPS 代理
+  https: ""
+  # 不代理的地址，逗号分隔
+  no_proxy: "localhost,127.0.0.1"
+
+# 插件设置
+plugins:
+  # 启用的插件列表
+  enabled:
+    - "code_analysis"
+    - "file_operations"
+    - "web_search"
+  # 插件目录
+  directory: "~/.ai_terminal/plugins"
+
+# 安全设置
+security:
+  # 是否允许执行系统命令
+  allow_shell_commands: true
+  # 敏感信息屏蔽
+  mask_sensitive: true
+  # 敏感关键词列表
+  sensitive_keywords:
+    - "password"
+    - "api_key"
+    - "secret"
+    - "token"
+
+# 自定义命令别名
+aliases:
+  # 示例: 定义 'ai help' 为 'ai 帮助'
+  help: "帮助"
+  # 示例: 定义 'ai ver' 为 'ai 版本'
+  ver: "版本"
+
+# 自定义提示词
+prompts:
+  # 系统提示词
+  system: |
+    你是 AI Terminal，一个智能终端助手，专注于在命令行环境中提供帮助。
+    当用户提问时：
+    1. 提供简洁、准确、有帮助的答案
+    2. 保持回答的技术准确性
+    3. 适应用户的技术水平，不过分简化也不过度复杂化
+    4. 当有多种可能的解释时，先提供最可能的答案，再提及其他可能性
+    5. 回答保持简洁，除非用户明确要求详细解释
+
+  # 命令解释提示词
+  command_explanation: |
+    请解释以下命令的功能和每个参数的作用：
+    {command}
+    
+    如果命令有潜在风险，请明确指出。
+
+  # 文档总结提示词
+  document_summary: |
+    请总结以下文档内容，提取关键信息：
+    {content}
+
+# 自定义错误消息
+error_messages:
+  api_key_missing: "错误: 未设置 API 密钥。请设置 MISTRAL_API_KEY 环境变量。"
+  command_failed: "命令执行失败: {error}"
+  file_not_found: "错误: 文件未找到: {path}"
+  invalid_input: "错误: 无效的输入"
+
+# 高级设置 (谨慎修改)
+advanced:
+  # 请求超时时间(秒)
+  request_timeout: 30
+  # 最大重试次数
+  max_retries: 3
+  # 重试延迟(秒)
+  retry_delay: 2
+  # 是否验证 SSL 证书
+  verify_ssl: true
+  # 用户代理
+  user_agent: "AITerminal/1.0.0"
+
+# 实验性功能 (可能不稳定)
+experimental:
+  # 是否启用代码自动补全
+  code_completion: false
+  # 是否启用上下文感知建议
+  context_aware_suggestions: false
+  # 是否启用多轮对话记忆
+  multi_turn_memory: true
