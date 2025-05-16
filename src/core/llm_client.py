@@ -6,8 +6,7 @@ Mistral API 客户端模块
 
 import os
 from typing import Dict, List, Optional, Generator, Any
-from mistralai.client import MistralClient as MistralAPIClient
-from mistralai.models.chat_completion import ChatMessage
+from mistralai import Mistral
 
 class MistralClient:
     """Mistral API 客户端类，负责与 Mistral API 通信"""
@@ -25,7 +24,7 @@ class MistralClient:
             raise ValueError("缺少 Mistral API 密钥。请设置环境变量 MISTRAL_API_KEY 或在配置文件中设置。")
         
         self.model = config.get('model', "mistral-small-latest")
-        self.client = MistralAPIClient(api_key=self.api_key)
+        self.client = Mistral(api_key=self.api_key)
         
         # 默认参数
         self.default_params = {
@@ -50,13 +49,13 @@ class MistralClient:
         messages = self._build_messages_from_context(context or {})
         
         # 添加用户的新消息
-        messages.append(ChatMessage(role="user", content=user_input))
+        messages.append({"role": "user", "content": user_input})
         
         # 构建 API 参数
         params = {**self.default_params, **kwargs}
         
         # 调用 Mistral API
-        chat_response = self.client.chat(
+        chat_response = self.client.chat.complete(
             model=self.model,
             messages=messages,
             temperature=params.get('temperature'),
@@ -83,7 +82,7 @@ class MistralClient:
         messages = self._build_messages_from_context(context or {})
         
         # 添加用户的新消息
-        messages.append(ChatMessage(role="user", content=user_input))
+        messages.append({"role": "user", "content": user_input})
         
         # 构建 API 参数
         params = {**self.default_params, **kwargs}
@@ -99,7 +98,7 @@ class MistralClient:
         
         # 返回流式响应生成器
         for chunk in stream:
-            if chunk.choices and chunk.choices[0].delta.content is not None:
+            if chunk.choices and chunk.choices[0].delta and chunk.choices[0].delta.content is not None:
                 yield chunk.choices[0].delta.content
     
     def _build_messages_from_context(self, context: Dict) -> List[Dict[str, str]]:
