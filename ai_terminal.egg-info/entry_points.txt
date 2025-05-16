@@ -1,0 +1,4 @@
+[console_scripts]
+ai-install = scripts.install:install_ai_terminal
+ai-uninstall = scripts.uninstall:main
+ai_terminal = src.main:main

@@ -1,0 +1,13 @@
+README.md
+setup.py
+./src/__init__.py
+./src/main.py
+ai_terminal.egg-info/PKG-INFO
+ai_terminal.egg-info/SOURCES.txt
+ai_terminal.egg-info/dependency_links.txt
+ai_terminal.egg-info/entry_points.txt
+ai_terminal.egg-info/requires.txt
+ai_terminal.egg-info/top_level.txt
+scripts/install.py
+scripts/setup_config.py
+scripts/uninstall.py
