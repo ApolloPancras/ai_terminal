@@ -28,8 +28,8 @@ def install_ai_terminal():
     bin_dir = os.path.join(ai_terminal_dir, "bin")
     os.makedirs(bin_dir, exist_ok=True)
     
-    # 获取当前脚本目录
-    current_dir = os.path.dirname(os.path.abspath(__file__))
+    # 获取项目根目录
+    current_dir = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
     
     # 创建符号链接或复制文件到 ~/.ai_terminal 目录
     try:
